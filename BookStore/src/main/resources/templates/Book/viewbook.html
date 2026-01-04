@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books List</title>
+
+    <!-- Simple Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+    <h2 style="text-align:center;">View Books List</h2>
+
+    <a href="/Book/create" class="btn btn-primary mb-3">Add New Book</a>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>BookID</th>
+            <th>BookName</th>
+            <th>BookPrice</th>
+            <th>BookCount</th>
+            <th>Actions</th>
+            
+        </tr>
+
+        <tr th:each="s : ${book}">
+            <td th:text="${s.bookId}"></td>
+            <td th:text="${s.bookname}"></td>
+            <td th:text="${s.bookprice}"></td>
+            <td th:text="${s.bookcount}"></td>
+
+            <td>
+                <a th:href="@{/Book/edit/{id}(id=${s.bookId})}"
+                   class="btn btn-warning btn-md">Edit</a>
+                <a th:href="@{/Book/delete/{id}(id=${s.bookId})}"
+                   onclick="return confirm('Are you sure want to delete this book?')" 
+                   class="btn btn-danger btn-md">Delete</a>
+            </td>
+            
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
